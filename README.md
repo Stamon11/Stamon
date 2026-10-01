@@ -1,9 +1,9 @@
-# Patrice Moncomble / Astraël
+# Patrice Moncomble — Les règles qu'on ne t'a jamais apprises
 
-Site officiel — livre, auteur et univers musical.
+Site officiel du livre de Patrice Moncomble.
 
-## Prévisualisation immédiate
+Achat : https://www.amazon.fr/dp/B0H4B41YDD
 
-https://raw.githack.com/Stamon11/Stamon/main/index.html
+Prévisualisation directe : https://raw.githack.com/Stamon11/Stamon/main/index.html
 
-Le dépôt contient le site complet en HTML, CSS et JavaScript. GitHub Pages pourra être utilisé dès que l'activation Pages du dépôt sera autorisée côté GitHub.
+L'ancienne version incluant le projet musical Astraël est conservée dans la branche `astrael-site-archive` pour le futur site séparé.
