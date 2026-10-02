@@ -22,25 +22,3 @@ if(form){
 
 
 
-function addMediaTilt(el,activeClass){
-  if(!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  el.addEventListener('pointermove',e=>{
-    const r=el.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width;
-    const y=(e.clientY-r.top)/r.height;
-    el.style.setProperty('--rx',((.5-y)*8).toFixed(2)+'deg');
-    el.style.setProperty('--ry',((x-.5)*10).toFixed(2)+'deg');
-    el.style.setProperty('--shine-x',(x*100).toFixed(1)+'%');
-    el.style.setProperty('--shine-y',(y*100).toFixed(1)+'%');
-    el.classList.add(activeClass);
-  });
-  el.addEventListener('pointerleave',()=>{
-    el.style.setProperty('--rx','0deg');
-    el.style.setProperty('--ry','0deg');
-    el.style.setProperty('--shine-x','50%');
-    el.style.setProperty('--shine-y','50%');
-    el.classList.remove(activeClass);
-  });
-}
-addMediaTilt(qs('.book-link'),'cover-active');
-addMediaTilt(qs('.author-photo'),'media-active');
