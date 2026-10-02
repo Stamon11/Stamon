@@ -20,27 +20,27 @@ if(form){
 }
 
 
-const coverLink=qs('.book-link');
-if(coverLink && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  coverLink.addEventListener('pointermove',e=>{
-    const r=coverLink.getBoundingClientRect();
+
+
+function addMediaTilt(el,activeClass){
+  if(!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  el.addEventListener('pointermove',e=>{
+    const r=el.getBoundingClientRect();
     const x=(e.clientX-r.left)/r.width;
     const y=(e.clientY-r.top)/r.height;
-    const ry=(x-.5)*10;
-    const rx=(.5-y)*8;
-    coverLink.style.setProperty('--rx',rx.toFixed(2)+'deg');
-    coverLink.style.setProperty('--ry',ry.toFixed(2)+'deg');
-    coverLink.style.setProperty('--shine-x',(x*100).toFixed(1)+'%');
-    coverLink.style.setProperty('--shine-y',(y*100).toFixed(1)+'%');
-    coverLink.classList.add('cover-active');
+    el.style.setProperty('--rx',((.5-y)*8).toFixed(2)+'deg');
+    el.style.setProperty('--ry',((x-.5)*10).toFixed(2)+'deg');
+    el.style.setProperty('--shine-x',(x*100).toFixed(1)+'%');
+    el.style.setProperty('--shine-y',(y*100).toFixed(1)+'%');
+    el.classList.add(activeClass);
   });
-  coverLink.addEventListener('pointerleave',()=>{
-    coverLink.style.setProperty('--rx','0deg');
-    coverLink.style.setProperty('--ry','0deg');
-    coverLink.style.setProperty('--shine-x','50%');
-    coverLink.style.setProperty('--shine-y','50%');
-    coverLink.classList.remove('cover-active');
+  el.addEventListener('pointerleave',()=>{
+    el.style.setProperty('--rx','0deg');
+    el.style.setProperty('--ry','0deg');
+    el.style.setProperty('--shine-x','50%');
+    el.style.setProperty('--shine-y','50%');
+    el.classList.remove(activeClass);
   });
-  coverLink.addEventListener('focus',()=>coverLink.classList.add('cover-active'));
-  coverLink.addEventListener('blur',()=>coverLink.classList.remove('cover-active'));
 }
+addMediaTilt(qs('.book-link'),'cover-active');
+addMediaTilt(qs('.author-photo'),'media-active');
